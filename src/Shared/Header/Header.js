@@ -31,7 +31,7 @@ const Header = () => {
                         <img src="https://placeimg.com/80/80/people" alt='' />
                     </div>
                 </label>
-                <Link className="btn">Login</Link>
+                <Link to='/login' className="btn">Login</Link>
                 <Link className="btn">Log Out</Link>
             </div>
         </div>
