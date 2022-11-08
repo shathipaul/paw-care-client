@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import img from '../../Assets/images/login.jpg'
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
@@ -8,7 +8,9 @@ const Register = () => {
     const {createUser, updateUserProfile} = useContext(AuthContext);
 
     const navigate = useNavigate();
+    const location = useLocation();
 
+    const from = location.state?.from?.pathname || '/';
 
     const handleSubmit = event =>{
         event.preventDefault();
@@ -23,6 +25,7 @@ const Register = () => {
             const user = result.user;
             console.log(user);
             form.reset();
+            navigate(from, {replace: true});
             handleUpdateUserProfile(name, photoUrl);
         })
         .catch(error => console.error(error));
@@ -40,7 +43,7 @@ const Register = () => {
 
     return (
         <div className="hero min-h-screen bg-base-200">
-            <div className="hero-content flex-col lg:flex-row-reverse">
+            <div className="hero-content flex-col lg:flex-row">
                 <div className="text-center lg:text-left">
                     <img src={img} alt="" />
                 </div>

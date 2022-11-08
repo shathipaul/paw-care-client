@@ -6,7 +6,7 @@ const Footer = () => {
         <footer className="footer footer-center p-10 text-primary-content bg-black">
             <div>
                 <img className='w-1/4 mx-auto' src={logo} alt="" />
-                <p className='text-xl font-semibold text-white'><span className='text-2xl font-bold text-white'>Paw Care</span><br />Your furry friends are in good hands with us</p>
+                <p className='text-xl font-semibold text-white'><span className='text-2xl font-bold text-white'>Paw Care</span><br />Your furry friends are in good hands with us!</p>
             </div>
             <div>
                 <div className="grid grid-flow-col gap-4 text-amber-600">

@@ -41,7 +41,9 @@ const Header = () => {
                     <div className="w-10 rounded-full">
                         {
                             user?.photoURL ?
+                            <>
                             <img src={user.photoURL} alt='' />
+                            </>
                             :
                             <UserIcon className="h-6 w-6 text-blue-500 mx-auto mt-2" />
                         }

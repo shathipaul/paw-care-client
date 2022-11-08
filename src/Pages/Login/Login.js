@@ -1,25 +1,43 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import img from '../../Assets/images/login.jpg'
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const Login = () => {
-const {googleLogIn} = useContext(AuthContext);
+    const { googleLogIn, logIn } = useContext(AuthContext);
 
-const googleProvider = new GoogleAuthProvider();
+    const navigate = useNavigate();
+    const location = useLocation();
 
-    const handleLogin = event =>{
+    const from = location.state?.from?.pathname || '/';
+
+    const googleProvider = new GoogleAuthProvider();
+
+    const handleLogin = event => {
         event.preventDefault();
+        const form = event.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        logIn(email, password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                form.reset();
+                navigate(from, { replace: true });
+            })
+            .catch(error => console.error(error));
     }
 
-    const handleGoogleLogIn = () =>{
+    const handleGoogleLogIn = () => {
         googleLogIn(googleProvider)
-        .then(result =>{
-            const user = result.user;
-            console.log(user);
-        })
-        .catch(error => console.error(error));
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                navigate(from, { replace: true });
+            })
+            .catch(error => console.error(error));
     }
     return (
         <div className="hero min-h-screen">
@@ -49,7 +67,7 @@ const googleProvider = new GoogleAuthProvider();
                         </div>
                         <p className='text-center text-md font-bold'>or</p>
                         <div className="form-control mt-2">
-                            <button onSubmit={handleGoogleLogIn} className="btn btn-primary font-bold text-lg">Login with Google</button>
+                            <button onClick={handleGoogleLogIn} className="btn btn-primary font-bold text-lg">Login with Google</button>
                         </div>
                     </form>
                 </div>
