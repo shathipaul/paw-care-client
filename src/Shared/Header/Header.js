@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../Assets/images/paw-care.png'
+import { AuthContext } from '../../context/AuthProvider/AuthProvider';
+import { UserIcon } from '@heroicons/react/24/solid'
 
 const Header = () => {
+    const {user, logOut} = useContext(AuthContext);
+
+    const handleLogOut = () =>{
+        logOut()
+        .then( () =>{})
+        .catch(error => console.error(error));
+    }
+
     const menuItems = <>
         <li><Link to='/' className='text-lg font-bold'>Home</Link></li>
+        <li><Link to='/services' className='text-lg font-bold'>Services</Link></li>
         <li><Link to='/blog' className='text-lg font-bold'>Blog</Link></li>
     </>
     return (
@@ -28,11 +39,22 @@ const Header = () => {
             <div className="navbar-end">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                     <div className="w-10 rounded-full">
-                        <img src="https://placeimg.com/80/80/people" alt='' />
+                        {
+                            user?.photoURL ?
+                            <img src={user.photoURL} alt='' />
+                            :
+                            <UserIcon className="h-6 w-6 text-blue-500 mx-auto mt-2" />
+                        }
                     </div>
                 </label>
+               <>
+               {
+                user?.uid ?
+                <button onClick={handleLogOut}  className="btn">Log out</button>
+                :
                 <Link to='/login' className="btn">Login</Link>
-                <Link className="btn">Log Out</Link>
+               }
+               </>
             </div>
         </div>
     );
