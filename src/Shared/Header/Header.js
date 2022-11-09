@@ -2,21 +2,27 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../Assets/images/paw-care.png'
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
-import { UserIcon } from '@heroicons/react/24/solid'
 
 const Header = () => {
-    const {user, logOut} = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
 
-    const handleLogOut = () =>{
+    const handleLogOut = () => {
         logOut()
-        .then( () =>{})
-        .catch(error => console.error(error));
+            .then(() => { })
+            .catch(error => console.error(error));
     }
 
     const menuItems = <>
-        <li><Link to='/' className='text-lg font-bold'>Home</Link></li>
-        <li><Link to='/services' className='text-lg font-bold'>Services</Link></li>
-        <li><Link to='/blog' className='text-lg font-bold'>Blog</Link></li>
+        <li><Link to='/' className='text-md font-semibold'>Home</Link></li>
+        <li><Link to='/services' className='text-md font-semibold'>Services</Link></li>
+        <li><Link to='/blog' className='text-md font-semibold'>Blog</Link></li>
+        {
+            user?.uid &&
+            <>
+                <li><Link to='/myreview' className='text-md font-semibold'>My Review</Link></li>
+                <li><Link to='/addservice' className='text-md font-semibold'>Add Service</Link></li>
+            </>
+        }
     </>
     return (
         <div className="navbar bg-base-100">
@@ -40,23 +46,21 @@ const Header = () => {
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                     <div className="w-10 rounded-full">
                         {
-                            user?.photoURL ?
+                            user?.photoURL &&
                             <>
-                            <img src={user.photoURL} alt='' />
+                                <img src={user.photoURL} alt='' />
                             </>
-                            :
-                            <UserIcon className="h-6 w-6 text-blue-500 mx-auto mt-2" />
                         }
                     </div>
                 </label>
-               <>
-               {
-                user?.uid ?
-                <button onClick={handleLogOut}  className="btn">Log out</button>
-                :
-                <Link to='/login' className="btn">Login</Link>
-               }
-               </>
+                <>
+                    {
+                        user?.uid ?
+                            <button onClick={handleLogOut} className="btn">Log out</button>
+                            :
+                            <Link to='/login' className="btn">Login</Link>
+                    }
+                </>
             </div>
         </div>
     );
