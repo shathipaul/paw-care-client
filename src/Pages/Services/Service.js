@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Service = ({service}) => {
 
@@ -10,14 +11,11 @@ const Service = ({service}) => {
                     {service.service}
                 </h2>
                 <p>{service.description.slice(0, 100)}...</p>
-                {/* <div className="card-actions justify-end">
-                    <div className="badge badge-outline">Review</div>
-                </div> */}
                 <h3 className="card-title">
                     Price: ${service.price}
                 </h3>
                 <div className="card-actions justify-center">
-                    <button className="btn btn-primary">Buy Now</button>
+                    <Link to={`/services/${service._id}`}><button className="btn btn-primary">View Detail</button></Link>
                 </div>
             </div>
         </div>
