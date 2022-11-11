@@ -3,9 +3,11 @@ import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import img from '../../Assets/images/login.jpg'
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
+import useTitleHook from '../../hooks/useTitleHook';
 
 const Login = () => {
     const { googleLogIn, logIn } = useContext(AuthContext);
+    useTitleHook('Login');
 
     const navigate = useNavigate();
     const location = useLocation();

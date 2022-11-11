@@ -1,7 +1,9 @@
 import React from 'react';
 import img from '../../Assets/images/faq.png'
+import useTitleHook from '../../hooks/useTitleHook';
 
 const Blog = () => {
+    useTitleHook('Blog');
     return (
         <div className="container flex flex-col justify-center py-5 mx-auto md:p-8">
             <h2 className="text-4xl font-semibold text-center pb-5">

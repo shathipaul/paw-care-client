@@ -2,9 +2,11 @@ import React from 'react';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { useLoaderData } from 'react-router-dom';
 import 'react-photo-view/dist/react-photo-view.css';
+import useTitleHook from '../../hooks/useTitleHook';
 
 const ServiceDetail = () => {
     const service = useLoaderData();
+    useTitleHook('Service');
     return (
         <div className="hero min-h-screen">
             <div className="hero-content flex-col lg:flex-row">

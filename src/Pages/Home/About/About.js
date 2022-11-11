@@ -1,8 +1,10 @@
 import React from 'react';
 import video from '../../../Assets/videos/video1.mp4'
+import useTitleHook from '../../../hooks/useTitleHook';
 
 
 const About = () => {
+    useTitleHook('About');
     return (
         <div className="hero bg-base-200 rounded-lg mb-10">
             <div className="flex flex-col lg:flex-row">

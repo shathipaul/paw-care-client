@@ -1,9 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import useTitleHook from '../../hooks/useTitleHook';
 
 const AddService = () => {
-
+    useTitleHook('Add Service');
     const navigate = useNavigate();
+    
 
     const handleAddSubmit = event =>{
         event.preventDefault();

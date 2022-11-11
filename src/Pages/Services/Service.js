@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useTitleHook from '../../hooks/useTitleHook';
 
 const Service = ({service}) => {
+    useTitleHook('Service');
 
     return (
         <div className="card bg-base-100 shadow-xl">

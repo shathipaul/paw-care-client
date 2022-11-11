@@ -2,10 +2,12 @@ import { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import img from '../../Assets/images/login.jpg'
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
+import useTitleHook from '../../hooks/useTitleHook';
 
 
 const Register = () => {
     const {createUser, updateUserProfile} = useContext(AuthContext);
+    useTitleHook('Register');
 
     const navigate = useNavigate();
     const location = useLocation();
