@@ -5,6 +5,7 @@ import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
+   
 
     const handleLogOut = () => {
         logOut()
@@ -48,6 +49,7 @@ const Header = () => {
                         {
                             user?.photoURL &&
                             <>
+                               
                                 <img src={user.photoURL} alt='' />
                             </>
                         }
